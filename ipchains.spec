@@ -9,8 +9,6 @@ Version:	1.3.10
 Release:	14
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	http://netfilter.filewatcher.org/ipchains/%{name}-%{version}.tar.gz
 Source1:	http://netfilter.filewatcher.org/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 Source2:	%{name}-non-english-man-pages.tar.bz2
@@ -57,13 +55,6 @@ Summary:	Library which manipulates firewall rules
 Summary(pl):	Biblioteka do manipulacji reguЁami filtrowania
 Version:	0.2
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 
 %description -n libipfwc
 Library which manipulates firewall rules.
@@ -75,8 +66,6 @@ Biblioteka do manipulacji reguЁami filtrowania.
 Summary:	ipchains for bootdisk
 Summary(pl):	ipchains na bootkietkЙ
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 
 %description embed
 ipchains for bootdisk.
