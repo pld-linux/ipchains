@@ -43,7 +43,7 @@ Herramienta para administración de reglas de firewall.
 %description -l pl
 W j±drach 2.2.xxx/2.3 filtr IP zosta³ znacznie zmodyfikowany (i,
 miejmy nadziejê, ulepszony). Ipchains (zastêpuj±c dawny ipfwadm) s³u¿y
-do konfigurowania filtru oraz mechanizmów logowania przychodz±cych
+do konfigurowania filtra oraz mechanizmów logowania przychodz±cych
 pakietów.
 
 %description -l pt_BR
