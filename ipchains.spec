@@ -1,19 +1,17 @@
-# conditional build:
-# _without_embed - don't build uClibc version
 Summary:	IP firewall and accounting administration tool
 Summary(es):	Herramienta para administración de reglas de firewall
 Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Summary(pt_BR):	Ferramentas para gerenciamento de regras de firewall
 Name:		ipchains
 Version:	1.3.10
-Release:	15
+Release:	16
 License:	GPL
 Group:		Applications/System
 Source0:	http://netfilter.filewatcher.org/ipchains/%{name}-%{version}.tar.gz
 Source1:	http://netfilter.filewatcher.org/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 Source2:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-fixman.patch
-Patch1:		%{name}-Makefile.patch
+Patch1:		%{name}-vlanallowing.patch
 URL:		http://netfilter.filewatcher.org/ipchains/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,21 +52,11 @@ Library which manipulates firewall rules.
 %description -n libipfwc -l pl
 Biblioteka do manipulacji regu³ami filtrowania.
 
-%package embed
-Summary:	ipchains for bootdisk
-Summary(pl):	ipchains na bootkietkê
-Group:		Applications/System
-
-%description embed
-ipchains for bootdisk.
-
-%description embed -l pl
-ipchains na bootkietkê.
-
 %prep
 %setup -q -a1
 %patch -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f ipchains
