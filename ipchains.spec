@@ -23,8 +23,8 @@ BuildRequires:	uClibc-static
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr
-%define		_sbindir	/sbin
+%define	_prefix		/usr
+%define	_sbindir	/sbin
 
 %define embed_path	/usr/lib/embed
 %define embed_cc	%{_arch}-uclibc-cc
@@ -73,12 +73,16 @@ Biblioteka do manipulacji regu³ami filtrowania.
 
 %package embed
 Summary:	ipchains for bootdisk
+Summary(pl):	ipchains na bootkietkê
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 
 %description embed
 ipchains for bootdisk.
+
+%description embed -l pl
+ipchains na bootkietkê.
 
 %prep
 %setup -q -a1
@@ -103,7 +107,7 @@ mv -f %{name} %{name}-embed-static
 %{__make} clean
 %endif
 
-%{__make} COPTS="%{rpmcflags}" 
+%{__make} COPTS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
