@@ -6,7 +6,7 @@ Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Summary(pt_BR):	Ferramentas para gerenciamento de regras de firewall
 Name:		ipchains
 Version:	1.3.10
-Release:	14
+Release:	15
 License:	GPL
 Group:		Applications/System
 Source0:	http://netfilter.filewatcher.org/ipchains/%{name}-%{version}.tar.gz
