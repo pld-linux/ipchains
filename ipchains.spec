@@ -2,7 +2,7 @@ Summary:	IP firewall and accounting administration tool
 Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Name:		ipchains
 Version:	1.3.9
-Release:	3
+Release:	4
 Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
