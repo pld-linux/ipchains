@@ -1,8 +1,8 @@
 Summary:	IP firewall and accounting administration tool
-Summary(pl):	Narzêdzie do zarz±dzania filterm pakietów IP.
+Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Name:		ipchains
 Version:	1.3.9
-Release:	2
+Release:	3
 Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
@@ -26,6 +26,18 @@ nadziejê, ulepszony). Ipchains (zastêpuj±c dawny ipfwadm) s³u¿y
 do konfigurowania filtru oraz mechanizmów logowania przychodz±cych
 pakietów.
 
+%package -n libipfwc
+Summary:	Library which manipulates firewall rules
+Summary(pl):	Biblioteka do manipulacji regu³ami filtrowania
+Group:		Libraries
+Group(pl):	Biblioteki
+
+%description -n libipfwc
+Library which manipulates firewall rules.
+
+%description -n libipfwc -l pl
+Biblioteka do manipulacji regu³ami filtrowania.
+
 %prep
 %setup -q -a1
 
@@ -37,11 +49,14 @@ make COPTS="$RPM_OPT_FLAGS"
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}} \
+	$RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
 install -s ipchains	$RPM_BUILD_ROOT%{_sbindir}
 install *.4		$RPM_BUILD_ROOT%{_mandir}/man4
 install *.8		$RPM_BUILD_ROOT%{_mandir}/man8
+install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
+install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
 
 gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man[48]/* READ* doc/HOWT*
 
@@ -53,3 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/HOWTO.txt.gz README.gz doc/*.html.gz
 %attr(755,root,root) /sbin/*
 %{_mandir}/man?/*
+
+%files -n libipfwc
+%defattr(644,root,root,755)
+%{_libdir}/*.a
+%{_includedir}/*.h
