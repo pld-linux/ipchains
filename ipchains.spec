@@ -10,8 +10,9 @@ Version:	1.3.10
 Release:	17
 License:	GPL
 Group:		Applications/System
-Source0:	http://netfilter.filewatcher.org/ipchains/%{name}-%{version}.tar.gz
-Source1:	http://netfilter.filewatcher.org/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
+Source0:	http://www.netfilter.org/ipchains/%{name}-%{version}.tar.gz
+#Source1:	http://netfilter.filewatcher.org/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
+Source1:	%{name}-HOWTOs-1.0.7.tar.bz2
 Source2:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-vlanallowing.patch
