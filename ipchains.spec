@@ -1,10 +1,12 @@
+# conditional build:
+# _without_embed - don't build uClibc version
 Summary:	IP firewall and accounting administration tool
 Summary(es):	Herramienta para administración de reglas de firewall
 Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Summary(pt_BR):	Ferramentas para gerenciamento de regras de firewall
 Name:		ipchains
 Version:	1.3.10
-Release:	12
+Release:	13
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -15,10 +17,18 @@ Source2:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-Makefile.patch
 URL:		http://netfilter.filewatcher.org/ipchains/
+%if %{!?_without_embed:1}%{?_without_embed:0}
+BuildRequires:	uClibc-devel
+BuildRequires:	uClibc-static
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr
 %define		_sbindir	/sbin
+
+%define embed_path	/usr/lib/embed
+%define embed_cc	%{_arch}-uclibc-cc
+%define embed_cflags	%{rpmcflags} -Os
 
 %description
 This is the Linux IP Firewalling Chains accounting and administration
@@ -61,13 +71,13 @@ Library which manipulates firewall rules.
 %description -n libipfwc -l pl
 Biblioteka do manipulacji regu³ami filtrowania.
 
-%package BOOT
+%package embed
 Summary:	ipchains for bootdisk
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 
-%description BOOT
+%description embed
 ipchains for bootdisk.
 
 %prep
@@ -80,12 +90,16 @@ rm -f ipchains
 %{__make} -C libipfwc clean
 ln -sf %{name}-HOWTOs-1.0.7	doc
 
-%if %{?BOOT:1}%{!?BOOT:0}
+%if %{!?_without_embed:1}%{?_without_embed:0}
 %{__make} \
-	COPTS="-Os -I%{_kernelsrcdir}/include -I%{_libdir}/bootdisk%{_includedir}" \
-	LDFLAGS="-nostdlib -static -s" \
-	LDLIBS="%{_libdir}/bootdisk%{_libdir}/crt0.o %{_libdir}/bootdisk%{_libdir}/libc.a -lgcc"
-mv -f %{name} %{name}-BOOT
+	COPTS="%{embed_cflags}" \
+	CC="%{embed_cc}"
+mv -f %{name} %{name}-embed-shared
+%{__make} \
+	COPTS="%{embed_cflags}" \
+	LDFLAGS="-static" \
+	CC="%{embed_cc}"
+mv -f %{name} %{name}-embed-static
 %{__make} clean
 %endif
 
@@ -95,11 +109,10 @@ mv -f %{name} %{name}-BOOT
 rm -rf $RPM_BUILD_ROOT
 
 
-%if %{?BOOT:1}%{!?BOOT:0}
-install -d $RPM_BUILD_ROOT%{_libdir}/bootdisk%{_sbindir}
-for i in *-BOOT; do 
-	install $i $RPM_BUILD_ROOT%{_libdir}/bootdisk%{_sbindir}/`basename $i -BOOT`
-done
+%if %{!?_without_embed:1}%{?_without_embed:0}
+install -d $RPM_BUILD_ROOT%{embed_path}/{shared,static}
+install %{name}-embed-shared $RPM_BUILD_ROOT%{embed_path}/shared/%{name}
+install %{name}-embed-static $RPM_BUILD_ROOT%{embed_path}/static/%{name}
 %endif
 
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}} \
@@ -132,8 +145,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 %{_includedir}/*.h
 
-%if %{?BOOT:1}%{!?BOOT:0}
-%files BOOT
+%if %{!?_without_embed:1}%{?_without_embed:0}
+%files embed
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/bootdisk%{_sbindir}/*
+%attr(755,root,root) %{embed_path}/*/*
 %endif
