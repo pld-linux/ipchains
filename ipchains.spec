@@ -2,16 +2,17 @@ Summary:	IP firewall and accounting administration tool
 Summary(pl):	Narzêdzie do zarz±dzania filterm pakietów IP.
 Name:		ipchains
 Version:	1.3.9
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
+Source0:	ftp://ftp.rustcorp.com/ipchains/%{name}-%{version}.tar.bz2
+Source1:	ftp://ftp.rustcorp.com/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 URL:		http://www.rustcorp.com/linux/ipchains/
-Source0:	%{name}-%{version}.tar.bz2
-Source1:	%{name}-scripts-1.1.2.tar.gz
-Source2:	%{name}-HOWTOs-1.0.7.tar.bz2
-Obsoletes:	ipchains-scripts
 BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define		_prefix		/usr
+%define		_sbindir	/sbin
 
 %description
 This is the Linux IP Firewalling Chains accounting and administration tool.
@@ -26,23 +27,19 @@ do konfigurowania filtru oraz mechanizmów logowania przychodz±cych
 pakietów.
 
 %prep
-%setup -q -a1 -a2
+%setup -q -a1
 
 %build
 ln -sf %{name}-HOWTOs-1.0.7	doc
-ln -sf %{name}-scripts-1.1.2	scripts
 
 make COPTS="$RPM_OPT_FLAGS" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/{sbin,usr/{bin,share/man/man{4,8}}}
+install -d $RPM_BUILD_ROOT/{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}}
 
-install scripts/{ipchains-{restore,save},ipfwadm-wrapper} $RPM_BUILD_ROOT/sbin
-install scripts/*.8 $RPM_BUILD_ROOT%{_mandir}/man8
-
-install -s ipchains	$RPM_BUILD_ROOT/sbin
+install -s ipchains	$RPM_BUILD_ROOT%{_sbindir}
 install *.4		$RPM_BUILD_ROOT%{_mandir}/man4
 install *.8		$RPM_BUILD_ROOT%{_mandir}/man8
 
@@ -55,4 +52,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/HOWTO.txt.gz README.gz doc/*.html.gz
 %attr(755,root,root) /sbin/*
-%{_mandir}/man[48]/* 
+%{_mandir}/man?/*
