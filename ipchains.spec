@@ -7,11 +7,11 @@ License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
-Source0:	ftp://ftp.rustcorp.com/ipchains/%{name}-%{version}.tar.bz2
-Source1:	ftp://ftp.rustcorp.com/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
+Source0:	http://netfilter.filewatcher.org/ipchains/%{name}-%{version}.tar.bz2
+Source1:	http://netfilter.filewatcher.org/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-Makefile.patch
-URL:		http://www.rustcorp.com/linux/ipchains/
+URL:		http://netfilter.filewatcher.org/ipchains/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr
