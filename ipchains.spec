@@ -63,7 +63,7 @@ ln -sf %{name}-HOWTOs-1.0.7	doc
 
 %if %{?BOOT:1}%{!?BOOT:0}
 %{__make} \
-	COPTS="-Os -I/usr/src/linux/include -I%{_libdir}/bootdisk%{_includedir}" \
+	COPTS="-Os -I%{_kernelsrcdir}/include -I%{_libdir}/bootdisk%{_includedir}" \
 	LDFLAGS="-nostdlib -static -s" \
 	LDLIBS="%{_libdir}/bootdisk%{_libdir}/crt0.o %{_libdir}/bootdisk%{_libdir}/libc.a -lgcc"
 mv -f %{name} %{name}-BOOT
