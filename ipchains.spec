@@ -6,7 +6,7 @@ Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Summary(pt_BR):	Ferramentas para gerenciamento de regras de firewall
 Name:		ipchains
 Version:	1.3.10
-Release:	13
+Release:	14
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -125,14 +125,14 @@ install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
 install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
-gzip -9nf READ* doc/HOWT*
+gzip -9nf READ*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/HOWTO.txt.gz README.gz doc/*.html.gz
+%doc doc/HOWTO.txt.gz README.gz doc/*.html
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
 %lang(es) %{_mandir}/es/man?/*
