@@ -2,9 +2,12 @@ Summary:	IP firewall and accounting administration tool
 Summary(es):	Herramienta para administraciСn de reglas de firewall
 Summary(pl):	NarzЙdzie do zarz╠dzania filtrem pakietСw IP
 Summary(pt_BR):	Ferramentas para gerenciamento de regras de firewall
+Summary(ru):	Утилиты для управления пакетными фильтрами ядра Linux
+Summary(uk):	Утил╕ти для керування пакетними ф╕льтрами ядра Linux
+Summary(zh_CN):	Linux IPv4╥ю╩Пг╫
 Name:		ipchains
 Version:	1.3.10
-Release:	16
+Release:	17
 License:	GPL
 Group:		Applications/System
 Source0:	http://netfilter.filewatcher.org/ipchains/%{name}-%{version}.tar.gz
@@ -40,6 +43,16 @@ pakietСw.
 O ipchains do Linux И uma atualizaГЦo (e esperamos uma melhoria em
 relaГЦo) ao cСdigo normal de firewall do Linux, para os kernels 2.0,
 2.1 e 2.2. Elas lhe permitem usar firewalls, mascaramento IP, etc.
+
+%description -l ru
+Linux IP Firewalling Chains - это новый набор утилит для управления
+пакетными фильтрами ядра Linux. Ipchains позволяют настроить firewall,
+IP masquerading и т.п.
+
+%description -l uk
+Linux IP Firewalling Chains - це новий наб╕р утил╕т для керування
+пакетними ф╕льтрами ядра Linux. Ipchains дозволяють налагодити
+firewall, IP masquerading ╕ т.╕.
 
 %package -n libipfwc
 Summary:	Library which manipulates firewall rules
