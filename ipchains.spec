@@ -15,18 +15,10 @@ Source2:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-Makefile.patch
 URL:		http://netfilter.filewatcher.org/ipchains/
-%if %{!?_without_embed:1}%{?_without_embed:0}
-BuildRequires:	uClibc-devel
-BuildRequires:	uClibc-static
-%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	_prefix		/usr
-%define	_sbindir	/sbin
-
-%define embed_path	/usr/lib/embed
-%define embed_cc	%{_arch}-uclibc-cc
-%define embed_cflags	%{rpmcflags} -Os
+%define		_prefix		/usr
+%define		_sbindir	/sbin
 
 %description
 This is the Linux IP Firewalling Chains accounting and administration
@@ -83,31 +75,10 @@ rm -f ipchains
 %{__make} -C libipfwc clean
 ln -sf %{name}-HOWTOs-1.0.7	doc
 
-%if %{!?_without_embed:1}%{?_without_embed:0}
-%{__make} \
-	COPTS="%{embed_cflags}" \
-	CC="%{embed_cc}"
-mv -f %{name} %{name}-embed-shared
-%{__make} \
-	COPTS="%{embed_cflags}" \
-	LDFLAGS="-static" \
-	CC="%{embed_cc}"
-mv -f %{name} %{name}-embed-static
-%{__make} clean
-%endif
-
 %{__make} COPTS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-
-%if %{!?_without_embed:1}%{?_without_embed:0}
-install -d $RPM_BUILD_ROOT%{embed_path}/{shared,static}
-install %{name}-embed-shared $RPM_BUILD_ROOT%{embed_path}/shared/%{name}
-install %{name}-embed-static $RPM_BUILD_ROOT%{embed_path}/static/%{name}
-%endif
-
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}} \
 	$RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
@@ -137,9 +108,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/*.a
 %{_includedir}/*.h
-
-%if %{!?_without_embed:1}%{?_without_embed:0}
-%files embed
-%defattr(644,root,root,755)
-%attr(755,root,root) %{embed_path}/*/*
-%endif
