@@ -9,7 +9,7 @@ Group(pl):	Narzêdzia/System
 Source0:	ftp://ftp.rustcorp.com/ipchains/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.rustcorp.com/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 URL:		http://www.rustcorp.com/linux/ipchains/
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr
 %define		_sbindir	/sbin
