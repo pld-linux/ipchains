@@ -4,8 +4,9 @@ Name:		ipchains
 Version:	1.3.9
 Release:	15
 License:	GPL
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.rustcorp.com/ipchains/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.rustcorp.com/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 Patch0:		%{name}-fixman.patch
@@ -34,6 +35,7 @@ Summary:	Library which manipulates firewall rules
 Summary(pl):	Biblioteka do manipulacji regu³ami filtrowania
 Version:	0.2
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 
@@ -50,7 +52,7 @@ Biblioteka do manipulacji regu³ami filtrowania.
 %build
 ln -sf %{name}-HOWTOs-1.0.7	doc
 
-%{__make} COPTS="$RPM_OPT_FLAGS" 
+%{__make} COPTS="%{rpmcflags}" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -58,13 +60,13 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}} \
 	$RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
-install -s ipchains	$RPM_BUILD_ROOT%{_sbindir}
+install ipchains	$RPM_BUILD_ROOT%{_sbindir}
 install *.4		$RPM_BUILD_ROOT%{_mandir}/man4
 install *.8		$RPM_BUILD_ROOT%{_mandir}/man8
 install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
 install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man[48]/* READ* doc/HOWT*
+gzip -9nf READ* doc/HOWT*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
