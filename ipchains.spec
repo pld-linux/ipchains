@@ -84,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/HOWTO.txt.gz README.gz doc/*.html
+%doc doc/HOWTO.txt README.gz doc/*.html
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
 %lang(es) %{_mandir}/es/man?/*
