@@ -2,12 +2,13 @@ Summary:	IP firewall and accounting administration tool
 Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Name:		ipchains
 Version:	1.3.9
-Release:	4
+Release:	15
 License:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source0:	ftp://ftp.rustcorp.com/ipchains/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.rustcorp.com/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
+Patch0:		%{name}-fixman.patch
 URL:		http://www.rustcorp.com/linux/ipchains/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,6 +45,7 @@ Biblioteka do manipulacji regu³ami filtrowania.
 
 %prep
 %setup -q -a1
+%patch -p1
 
 %build
 ln -sf %{name}-HOWTOs-1.0.7	doc
