@@ -11,9 +11,12 @@ Release:	17
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.netfilter.org/ipchains/%{name}-%{version}.tar.gz
+# Source0-md5:	44b6df672a6e7bce8902dc67aef6b12a
 #Source1:	http://netfilter.filewatcher.org/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 Source1:	%{name}-HOWTOs-1.0.7.tar.bz2
+# Source1-md5:	f4548c7fb6cdfc1015012c8860a5856a
 Source2:	%{name}-non-english-man-pages.tar.bz2
+# Source2-md5:	460a8227af67f289ac9868706cf89e54
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-vlanallowing.patch
 URL:		http://netfilter.filewatcher.org/ipchains/
