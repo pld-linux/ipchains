@@ -3,7 +3,7 @@ Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Name:		ipchains
 Version:	1.3.9
 Release:	4
-Copyright:	GPL
+License:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source0:	ftp://ftp.rustcorp.com/ipchains/%{name}-%{version}.tar.bz2
@@ -15,14 +15,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sbindir	/sbin
 
 %description
-This is the Linux IP Firewalling Chains accounting and administration tool.
+This is the Linux IP Firewalling Chains accounting and administration
+tool.
 
-Linux IP Firewalling Chains is an update to (and hopefully an improvement
-upon) the normal Linux Firewalling code, for 2.2 and 2.3 kernels.
+Linux IP Firewalling Chains is an update to (and hopefully an
+improvement upon) the normal Linux Firewalling code, for 2.2 and 2.3
+kernels.
 
 %description -l pl
-W j±drach 2.2.xxx/2.3 filtr IP zosta³ znacznie zmodyfikowany (i, miejmy
-nadziejê, ulepszony). Ipchains (zastêpuj±c dawny ipfwadm) s³u¿y
+W j±drach 2.2.xxx/2.3 filtr IP zosta³ znacznie zmodyfikowany (i,
+miejmy nadziejê, ulepszony). Ipchains (zastêpuj±c dawny ipfwadm) s³u¿y
 do konfigurowania filtru oraz mechanizmów logowania przychodz±cych
 pakietów.
 
@@ -31,6 +33,7 @@ Summary:	Library which manipulates firewall rules
 Summary(pl):	Biblioteka do manipulacji regu³ami filtrowania
 Version:	0.2
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 
 %description -n libipfwc
@@ -59,7 +62,7 @@ install *.8		$RPM_BUILD_ROOT%{_mandir}/man8
 install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
 install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
 
-gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man[48]/* READ* doc/HOWT*
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man[48]/* READ* doc/HOWT*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/HOWTO.txt.gz README.gz doc/*.html.gz
-%attr(755,root,root) /sbin/*
+%attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
 
 %files -n libipfwc
