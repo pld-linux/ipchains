@@ -8,7 +8,7 @@ Summary(uk):	Утил╕ти для керування пакетними ф╕льтрами ядра Linux
 Summary(zh_CN):	Linux IPv4╥ю╩Пг╫
 Name:		ipchains
 Version:	1.3.10
-Release:	19
+Release:	20
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.netfilter.org/ipchains/%{name}-%{version}.tar.gz
