@@ -13,6 +13,7 @@ Source2:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-vlanallowing.patch
 URL:		http://netfilter.filewatcher.org/ipchains/
+Provides:	firewall-userspace-tool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr
