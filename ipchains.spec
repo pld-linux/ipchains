@@ -90,14 +90,12 @@ install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
 install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
-gzip -9nf READ*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/HOWTO.txt README.gz doc/*.html
+%doc doc/HOWTO.txt README doc/*.html
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
 %lang(es) %{_mandir}/es/man?/*
