@@ -75,7 +75,7 @@ rm -f ipchains
 %{__make} -C libipfwc clean
 ln -sf %{name}-HOWTOs-1.0.7	doc
 
-%{__make} COPTS="%{rpmcflags}"
+%{__make} COPTS="%{rpmcflags}" CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
