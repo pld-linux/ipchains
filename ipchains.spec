@@ -61,10 +61,13 @@ Library which manipulates firewall rules.
 Biblioteka do manipulacji regu³ami filtrowania.
 
 %package BOOT
-Summary:	%{name} for bootdisk
+Summary:	ipchains for bootdisk
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
+
+%description BOOT
+ipchains for bootdisk.
 
 %prep
 %setup -q -a1
