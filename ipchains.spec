@@ -10,6 +10,7 @@ Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.rustcorp.com/ipchains/%{name}-%{version}.tar.bz2
 Source1:	ftp://ftp.rustcorp.com/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
 Patch0:		%{name}-fixman.patch
+Patch1:		%{name}-Makefile.patch
 URL:		http://www.rustcorp.com/linux/ipchains/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,17 +46,42 @@ Library which manipulates firewall rules.
 %description -n libipfwc -l pl
 Biblioteka do manipulacji regu³ami filtrowania.
 
+%if %{?BOOT:1}%{!?BOOT:0}
+%package BOOT
+Summary:	%{name} for bootdisk
+Group:		Applications/System
+%description BOOT
+%endif
+
 %prep
 %setup -q -a1
 %patch -p1
+%patch1 -p1
 
 %build
 ln -sf %{name}-HOWTOs-1.0.7	doc
+
+%if %{?BOOT:1}%{!?BOOT:0}
+%{__make} \
+	COPTS="-Os -I/usr/src/linux/include -I%{_libdir}/bootdisk%{_includedir}" \
+	LDFLAGS="-nostdlib -static -s" \
+	LDLIBS="%{_libdir}/bootdisk%{_libdir}/crt0.o %{_libdir}/bootdisk%{_libdir}/libc.a -lgcc"
+mv -f %{name} %{name}-BOOT
+%{__make} clean
+%endif
 
 %{__make} COPTS="%{rpmcflags}" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
+
+%if %{?BOOT:1}%{!?BOOT:0}
+install -d $RPM_BUILD_ROOT/usr/lib/bootdisk/sbin
+for i in *-BOOT; do 
+  install -s $i $RPM_BUILD_ROOT/usr/lib/bootdisk/sbin/`basename $i -BOOT`
+done
+%endif
 
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}} \
 	$RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
@@ -81,3 +107,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/*.a
 %{_includedir}/*.h
+
+%if %{?BOOT:1}%{!?BOOT:0}
+%files BOOT
+%defattr(644,root,root,755)
+%attr(755,root,root) /usr/lib/bootdisk/sbin/*
+%endif
