@@ -56,7 +56,6 @@ Biblioteka do manipulacji regu³ami filtrowania.
 %setup -q -a1
 %patch -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 rm -f ipchains
