@@ -29,8 +29,8 @@ pakietów.
 %package -n libipfwc
 Summary:	Library which manipulates firewall rules
 Summary(pl):	Biblioteka do manipulacji regu³ami filtrowania
-Group:		Libraries
-Group(pl):	Biblioteki
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
 
 %description -n libipfwc
 Library which manipulates firewall rules.
