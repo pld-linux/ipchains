@@ -48,7 +48,7 @@ Biblioteka do manipulacji regu³ami filtrowania.
 %build
 ln -sf %{name}-HOWTOs-1.0.7	doc
 
-make COPTS="$RPM_OPT_FLAGS" 
+%{__make} COPTS="$RPM_OPT_FLAGS" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
