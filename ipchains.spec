@@ -1,3 +1,4 @@
+%define		_scriptver	1.1.2
 Summary:	IP firewall and accounting administration tool
 Summary(es):	Herramienta para administraciÛn de reglas de firewall
 Summary(pl):	NarzÍdzie do zarz±dzania filtrem pakietÛw IP
@@ -7,7 +8,7 @@ Summary(uk):	ı‘…Ã¶‘… ƒÃ— À≈“’◊¡ŒŒ— –¡À≈‘Œ…Õ… ∆¶Ãÿ‘“¡Õ… —ƒ“¡ Linux
 Summary(zh_CN):	Linux IPv4∑¿ª«Ω
 Name:		ipchains
 Version:	1.3.10
-Release:	18
+Release:	19
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.netfilter.org/ipchains/%{name}-%{version}.tar.gz
@@ -17,9 +18,11 @@ Source1:	%{name}-HOWTOs-1.0.7.tar.bz2
 # Source1-md5:	f4548c7fb6cdfc1015012c8860a5856a
 Source2:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source2-md5:	460a8227af67f289ac9868706cf89e54
+Source3:	http://people.netfilter.org/~rusty/ipchains/%{name}-scripts-%{_scriptver}.tar.gz
+# Source3-md5:	c8996aef5985bddf80844b12ae833781
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-vlanallowing.patch
-URL:		http://netfilter.filewatcher.org/ipchains/
+URL:		http://people.netfilter.org/~rusty/ipchains/
 Provides:	firewall-userspace-tool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -71,7 +74,7 @@ Library which manipulates firewall rules.
 Biblioteka do manipulacji regu≥ami filtrowania.
 
 %prep
-%setup -q -a1
+%setup -q -a1 -a3
 %patch -p1
 %patch1 -p1
 
@@ -92,6 +95,12 @@ install *.4		$RPM_BUILD_ROOT%{_mandir}/man4
 install *.8		$RPM_BUILD_ROOT%{_mandir}/man8
 install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
 install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
+cd %{name}-scripts-%{_scriptver}
+install ipchains-restore	$RPM_BUILD_ROOT%{_sbindir}
+install ipchains-save		$RPM_BUILD_ROOT%{_sbindir}
+install ipfwadm-wrapper		$RPM_BUILD_ROOT%{_sbindir}
+install *.8			$RPM_BUILD_ROOT%{_mandir}/man8
+
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 %clean
