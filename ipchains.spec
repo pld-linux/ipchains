@@ -4,13 +4,14 @@ Summary(pl):	Narzêdzie do zarz±dzania filtrem pakietów IP
 Summary(pt_BR):	Ferramentas para gerenciamento de regras de firewall
 Name:		ipchains
 Version:	1.3.10
-Release:	11
+Release:	12
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	http://netfilter.filewatcher.org/ipchains/%{name}-%{version}.tar.gz
 Source1:	http://netfilter.filewatcher.org/ipchains/%{name}-HOWTOs-1.0.7.tar.bz2
+Source2:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-Makefile.patch
 URL:		http://netfilter.filewatcher.org/ipchains/
@@ -109,6 +110,7 @@ install *.4		$RPM_BUILD_ROOT%{_mandir}/man4
 install *.8		$RPM_BUILD_ROOT%{_mandir}/man8
 install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
 install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
+bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 gzip -9nf READ* doc/HOWT*
 
@@ -120,6 +122,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/HOWTO.txt.gz README.gz doc/*.html.gz
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
+%lang(es) %{_mandir}/es/man?/*
+%lang(it) %{_mandir}/it/man?/*
+%lang(ja) %{_mandir}/ja/man?/*
+%lang(pl) %{_mandir}/pl/man?/*
 
 %files -n libipfwc
 %defattr(644,root,root,755)
