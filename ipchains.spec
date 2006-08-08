@@ -75,7 +75,7 @@ Biblioteka do manipulacji regu³ami filtrowania.
 
 %prep
 %setup -q -a1 -a3
-%patch -p1
+%patch0 -p1
 %patch1 -p1
 
 %build
