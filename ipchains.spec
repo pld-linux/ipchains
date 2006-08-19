@@ -78,10 +78,11 @@ Biblioteka do manipulacji regu³ami filtrowania.
 %patch0 -p1
 %patch1 -p1
 
-%build
 rm -f ipchains
-%{__make} -C libipfwc clean
 ln -sf %{name}-HOWTOs-1.0.7	doc
+
+%build
+%{__make} -C libipfwc clean
 
 %{__make} \
 	COPTS="%{rpmcflags}" \
