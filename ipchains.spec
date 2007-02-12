@@ -1,11 +1,11 @@
 %define		_scriptver	1.1.2
 Summary:	IP firewall and accounting administration tool
-Summary(es):	Herramienta para administraciСn de reglas de firewall
-Summary(pl):	NarzЙdzie do zarz╠dzania filtrem pakietСw IP
-Summary(pt_BR):	Ferramentas para gerenciamento de regras de firewall
-Summary(ru):	Утилиты для управления пакетными фильтрами ядра Linux
-Summary(uk):	Утил╕ти для керування пакетними ф╕льтрами ядра Linux
-Summary(zh_CN):	Linux IPv4╥ю╩Пг╫
+Summary(es.UTF-8):   Herramienta para administraciцЁn de reglas de firewall
+Summary(pl.UTF-8):   Narzд≥dzie do zarzд┘dzania filtrem pakietцЁw IP
+Summary(pt_BR.UTF-8):   Ferramentas para gerenciamento de regras de firewall
+Summary(ru.UTF-8):   пёя┌п╦п╩п╦я┌я▀ п╢п╩я▐ я┐п©я─п╟п╡п╩п╣п╫п╦я▐ п©п╟п╨п╣я┌п╫я▀п╪п╦ я└п╦п╩я▄я┌я─п╟п╪п╦ я▐п╢я─п╟ Linux
+Summary(uk.UTF-8):   пёя┌п╦п╩я√я┌п╦ п╢п╩я▐ п╨п╣я─я┐п╡п╟п╫п╫я▐ п©п╟п╨п╣я┌п╫п╦п╪п╦ я└я√п╩я▄я┌я─п╟п╪п╦ я▐п╢я─п╟ Linux
+Summary(zh_CN.UTF-8):   Linux IPv4И≤╡Г│╚Е╒≥
 Name:		ipchains
 Version:	1.3.10
 Release:	20
@@ -37,41 +37,41 @@ Linux IP Firewalling Chains is an update to (and hopefully an
 improvement upon) the normal Linux Firewalling code, for 2.2 and 2.3
 kernels.
 
-%description -l es
-Herramienta para administraciСn de reglas de firewall.
+%description -l es.UTF-8
+Herramienta para administraciцЁn de reglas de firewall.
 
-%description -l pl
-W j╠drach 2.2.xxx/2.3 filtr IP zostaЁ znacznie zmodyfikowany (i,
-miejmy nadziejЙ, ulepszony). Ipchains (zastЙpuj╠c dawny ipfwadm) sЁu©y
-do konfigurowania filtra oraz mechanizmСw logowania przychodz╠cych
-pakietСw.
+%description -l pl.UTF-8
+W jд┘drach 2.2.xxx/2.3 filtr IP zostaе┌ znacznie zmodyfikowany (i,
+miejmy nadziejд≥, ulepszony). Ipchains (zastд≥pujд┘c dawny ipfwadm) sе┌uе╪y
+do konfigurowania filtra oraz mechanizmцЁw logowania przychodzд┘cych
+pakietцЁw.
 
-%description -l pt_BR
-O ipchains do Linux И uma atualizaГЦo (e esperamos uma melhoria em
-relaГЦo) ao cСdigo normal de firewall do Linux, para os kernels 2.0,
+%description -l pt_BR.UTF-8
+O ipchains do Linux ц╘ uma atualizaц╖цёo (e esperamos uma melhoria em
+relaц╖цёo) ao cцЁdigo normal de firewall do Linux, para os kernels 2.0,
 2.1 e 2.2. Elas lhe permitem usar firewalls, mascaramento IP, etc.
 
-%description -l ru
-Linux IP Firewalling Chains - это новый набор утилит для управления
-пакетными фильтрами ядра Linux. Ipchains позволяют настроить firewall,
-IP masquerading и т.п.
+%description -l ru.UTF-8
+Linux IP Firewalling Chains - я█я┌п╬ п╫п╬п╡я▀п╧ п╫п╟п╠п╬я─ я┐я┌п╦п╩п╦я┌ п╢п╩я▐ я┐п©я─п╟п╡п╩п╣п╫п╦я▐
+п©п╟п╨п╣я┌п╫я▀п╪п╦ я└п╦п╩я▄я┌я─п╟п╪п╦ я▐п╢я─п╟ Linux. Ipchains п©п╬п╥п╡п╬п╩я▐я▌я┌ п╫п╟я│я┌я─п╬п╦я┌я▄ firewall,
+IP masquerading п╦ я┌.п©.
 
-%description -l uk
-Linux IP Firewalling Chains - це новий наб╕р утил╕т для керування
-пакетними ф╕льтрами ядра Linux. Ipchains дозволяють налагодити
-firewall, IP masquerading ╕ т.╕.
+%description -l uk.UTF-8
+Linux IP Firewalling Chains - я├п╣ п╫п╬п╡п╦п╧ п╫п╟п╠я√я─ я┐я┌п╦п╩я√я┌ п╢п╩я▐ п╨п╣я─я┐п╡п╟п╫п╫я▐
+п©п╟п╨п╣я┌п╫п╦п╪п╦ я└я√п╩я▄я┌я─п╟п╪п╦ я▐п╢я─п╟ Linux. Ipchains п╢п╬п╥п╡п╬п╩я▐я▌я┌я▄ п╫п╟п╩п╟пЁп╬п╢п╦я┌п╦
+firewall, IP masquerading я√ я┌.я√.
 
 %package -n libipfwc
 Summary:	Library which manipulates firewall rules
-Summary(pl):	Biblioteka do manipulacji reguЁami filtrowania
+Summary(pl.UTF-8):   Biblioteka do manipulacji reguе┌ami filtrowania
 Version:	0.2
 Group:		Development/Libraries
 
 %description -n libipfwc
 Library which manipulates firewall rules.
 
-%description -n libipfwc -l pl
-Biblioteka do manipulacji reguЁami filtrowania.
+%description -n libipfwc -l pl.UTF-8
+Biblioteka do manipulacji reguе┌ami filtrowania.
 
 %prep
 %setup -q -a1 -a3
