@@ -1,11 +1,11 @@
 %define		_scriptver	1.1.2
 Summary:	IP firewall and accounting administration tool
-Summary(es.UTF-8):   Herramienta para administración de reglas de firewall
-Summary(pl.UTF-8):   Narzędzie do zarządzania filtrem pakietów IP
-Summary(pt_BR.UTF-8):   Ferramentas para gerenciamento de regras de firewall
-Summary(ru.UTF-8):   Утилиты для управления пакетными фильтрами ядра Linux
-Summary(uk.UTF-8):   Утиліти для керування пакетними фільтрами ядра Linux
-Summary(zh_CN.UTF-8):   Linux IPv4防火墙
+Summary(es.UTF-8):	Herramienta para administración de reglas de firewall
+Summary(pl.UTF-8):	Narzędzie do zarządzania filtrem pakietów IP
+Summary(pt_BR.UTF-8):	Ferramentas para gerenciamento de regras de firewall
+Summary(ru.UTF-8):	Утилиты для управления пакетными фильтрами ядра Linux
+Summary(uk.UTF-8):	Утиліти для керування пакетними фільтрами ядра Linux
+Summary(zh_CN.UTF-8):	Linux IPv4防火墙
 Name:		ipchains
 Version:	1.3.10
 Release:	20
@@ -63,7 +63,7 @@ firewall, IP masquerading і т.і.
 
 %package -n libipfwc
 Summary:	Library which manipulates firewall rules
-Summary(pl.UTF-8):   Biblioteka do manipulacji regułami filtrowania
+Summary(pl.UTF-8):	Biblioteka do manipulacji regułami filtrowania
 Version:	0.2
 Group:		Development/Libraries
 
