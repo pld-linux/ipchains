@@ -1,0 +1,11 @@
+--- ipchains-1.3.10/libipfwc/libipfwc.c.orig	1999-03-23 04:41:17.000000000 +0100
++++ ipchains-1.3.10/libipfwc/libipfwc.c	2020-08-22 11:18:51.852161742 +0200
+@@ -500,7 +500,7 @@
+ 					       " doesn't support"
+ 					       " transparent proxying?)");
+ 					break;
+-				default:
++				default: ;
+ 				}
+ 			return message;
+ 		}

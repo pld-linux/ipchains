@@ -22,6 +22,7 @@ Source3:	http://people.netfilter.org/~rusty/ipchains/%{name}-scripts-%{_scriptve
 # Source3-md5:	c8996aef5985bddf80844b12ae833781
 Patch0:		%{name}-fixman.patch
 Patch1:		%{name}-vlanallowing.patch
+Patch2:		%{name}-gcc.patch
 URL:		http://people.netfilter.org/~rusty/ipchains/
 Provides:	firewall-userspace-tool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -77,8 +78,9 @@ Biblioteka do manipulacji regułami filtrowania.
 %setup -q -a1 -a3
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
-rm -f ipchains
+%{__rm} ipchains
 ln -sf %{name}-HOWTOs-1.0.7	doc
 
 %build
@@ -94,15 +96,15 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_bindir},%{_mandir}/man{4,8}} \
 	$RPM_BUILD_ROOT{%{_libdir},%{_includedir}}
 
 install ipchains	$RPM_BUILD_ROOT%{_sbindir}
-install *.4		$RPM_BUILD_ROOT%{_mandir}/man4
-install *.8		$RPM_BUILD_ROOT%{_mandir}/man8
-install libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
-install libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
+cp -p *.4		$RPM_BUILD_ROOT%{_mandir}/man4
+cp -p *.8		$RPM_BUILD_ROOT%{_mandir}/man8
+cp -p libipfwc/*.a	$RPM_BUILD_ROOT%{_libdir}
+cp -p libipfwc/*.h	$RPM_BUILD_ROOT%{_includedir}
 cd %{name}-scripts-%{_scriptver}
 install ipchains-restore	$RPM_BUILD_ROOT%{_sbindir}
 install ipchains-save		$RPM_BUILD_ROOT%{_sbindir}
 install ipfwadm-wrapper		$RPM_BUILD_ROOT%{_sbindir}
-install *.8			$RPM_BUILD_ROOT%{_mandir}/man8
+cp -p *.8			$RPM_BUILD_ROOT%{_mandir}/man8
 
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
@@ -112,14 +114,23 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/HOWTO.txt README doc/*.html
-%attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man?/*
-%lang(es) %{_mandir}/es/man?/*
-%lang(it) %{_mandir}/it/man?/*
-%lang(ja) %{_mandir}/ja/man?/*
-%lang(pl) %{_mandir}/pl/man?/*
+%attr(755,root,root) %{_sbindir}/ipchains
+%attr(755,root,root) %{_sbindir}/ipchains-restore
+%attr(755,root,root) %{_sbindir}/ipchains-save
+%attr(755,root,root) %{_sbindir}/ipfwadm-wrapper
+%{_mandir}/man4/ipfw.4*
+%{_mandir}/man8/ipchains.8*
+%{_mandir}/man8/ipchains-restore.8*
+%{_mandir}/man8/ipchains-save.8*
+%{_mandir}/man8/ipfwadm-wrapper.8*
+%lang(es) %{_mandir}/es/man8/ipchains.8*
+%lang(it) %{_mandir}/it/man4/ipfw.4*
+%lang(ja) %{_mandir}/ja/man8/ipchains.8*
+%lang(pl) %{_mandir}/pl/man4/ipfw.4*
+%lang(pl) %{_mandir}/pl/man8/ipchains.8*
 
 %files -n libipfwc
 %defattr(644,root,root,755)
-%{_libdir}/*.a
-%{_includedir}/*.h
+%{_libdir}/libipfwc.a
+%{_includedir}/ipfwc_kernel_headers.h
+%{_includedir}/libipfwc.h
